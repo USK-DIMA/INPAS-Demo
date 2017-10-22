@@ -5,29 +5,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="templateResolver"
-          class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+    <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/resources/html/"/>
         <property name="suffix" value=".html"/>
         <property name="characterEncoding" value="UTF-8"/>
         <property name="templateMode" value="HTML5"/>
     </bean>
 
-
-    <bean id="fileTemplateResolver"
-          class="org.thymeleaf.templateresolver.FileTemplateResolver">
-        <property name="prefix"
-                  value="../../Users/Dmitry/IdeaProjects/INPAS Demo/src/main/webapp/WEB-INF/resources/html/"/>
-        <property name="suffix" value=".html"/>
-        <property name="cacheable" value="false"/>
-        <property name="characterEncoding" value="UTF-8"/>
-        <property name="templateMode" value="HTML5"/>
-    </bean>
-
     <bean id="templateEngine"
           class="org.thymeleaf.spring4.SpringTemplateEngine">
-        <!--<property name="templateResolver" ref="templateResolver"/>-->
-        <property name="templateResolver" ref="fileTemplateResolver"/>
+        <property name="templateResolver" ref="templateResolver"/>
     </bean>
 
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
@@ -35,12 +22,8 @@
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
 
-    <mvc:resources mapping="/css/**" location="/WEB-INF/resources/css/"/>
-    <!--<mvc:resources mapping="/js/**" location="/WEB-INF/resources/js/"/>-->
+    <mvc:resources mapping="/js/**" location="/WEB-INF/resources/js/"/>
     <mvc:resources mapping="/bootstrap/**" location="/WEB-INF/bootstrap/"/>
-    <mvc:resources mapping="/js/**"
-                   location="file:C:/Users/Dmitry/IdeaProjects/INPAS Demo/src/main/webapp/WEB-INF/resources/js/"/>
-
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>

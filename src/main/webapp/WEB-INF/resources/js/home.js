@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 function clearHistory() {
     $.ajax({
-        url: 'history',
+        url: getContextPath() + '/history',
         method: 'DELETE'
     }).done(function(){
         clearTable();
@@ -36,9 +36,13 @@ function setDataTableLanguage() {
     });
 }
 
+function getContextPath() {
+    return window.location.pathname;
+}
+
 function initHistoryTable(){
     $('#historyTable').DataTable({
-        ajax: 'history',
+        ajax: getContextPath() +'/history',
         sAjaxDataProp: "",
         bInfo: false,
         searching: false,
@@ -86,7 +90,7 @@ function calculateFile() {
 
 function ajaxCalculateFile(data) {
     return $.ajax({
-        url: 'calculateFile',
+        url: getContextPath() + '/calculateFile',
         data: data,
         dataType: 'json',
         processData: false,
@@ -97,7 +101,7 @@ function ajaxCalculateFile(data) {
 
 function ajaxCalculateText(inputArray) {
     return $.ajax({
-        url: 'calculateText',
+        url: getContextPath() + '/calculateText',
         contentType: "application/json",
         dataType: 'json',
         data: JSON.stringify(inputArray),
